@@ -126,21 +126,29 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 32px 28px;
+    padding: 20px clamp(24px, 5vw, 60px);
+    min-height: 70px;
     transition: padding var(--transition-fast);
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 26px;
+    gap: clamp(6px, 1vw, 12px);
+    font-size: clamp(16px, 2.5vw, 26px);
     font-weight: 700;
     color: var(--primary-color);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     flex-shrink: 0;
+}
+
+.logo svg {
+    width: clamp(24px, 3vw, 40px);
+    height: clamp(24px, 3vw, 40px);
 }
 
 .logo:hover {
@@ -160,33 +168,37 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 44px;
+    gap: clamp(8px, 2vw, 44px);
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-link {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 16px;
-    padding: 16px 24px;
-    border-radius: var(--radius-sm);
-    transition: all 0.3s ease;
+    font-size: clamp(11px, 1.5vw, 16px);
+    padding: clamp(2px, 0.4vw, 4px) clamp(4px, 0.6vw, 8px);
+    border-radius: clamp(2px, 0.3vw, 4px);
+    transition: all 0.15s ease;
     position: relative;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: 8px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%) scaleX(0);
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    border-radius: 2px;
-    transition: transform 0.3s ease;
+    width: 40%;
+    height: 1px;
+    background: var(--primary-color);
+    border-radius: 1px;
+    transition: transform 0.15s ease;
+    pointer-events: none;
 }
 
 .nav-link:hover {
@@ -196,7 +208,7 @@ body {
 
 .nav-link.active {
     color: var(--primary-color);
-    background: rgba(102, 126, 234, 0.12);
+    background: rgba(102, 126, 234, 0.1);
 }
 
 .nav-link:hover::after,
@@ -207,17 +219,17 @@ body {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: clamp(8px, 1.5vw, 16px);
 }
 
 .nav-actions .btn-primary {
-    padding: 10px 18px;
-    font-size: 14px;
+    padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px);
+    font-size: clamp(10px, 1.3vw, 14px);
 }
 
 .theme-toggle {
-    width: 48px;
-    height: 48px;
+    width: clamp(32px, 4vw, 48px);
+    height: clamp(32px, 4vw, 48px);
     border-radius: var(--radius-md);
     border: 2px solid var(--bg-tertiary);
     background: var(--bg-secondary);
@@ -262,31 +274,6 @@ body {
 
 .hamburger {
     display: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    padding: 8px;
-}
-
-.hamburger span {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background: var(--text-primary);
-    border-radius: 3px;
-    transition: all var(--transition-normal);
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 /* ============================================
@@ -1779,61 +1766,20 @@ img {
         padding: 16px 20px;
     }
     
+    /* Navbar stays visible - just smaller */
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -300px;
-        right: auto;
-        width: 280px;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 100px 24px 32px;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-        border-radius: 0;
-        transition: left 0.3s ease;
-        gap: 8px;
-        overflow-y: auto;
-        z-index: 9999;
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-        position: relative;
-        z-index: 1;
+        display: flex;
+        gap: clamp(4px, 1.2vw, 16px);
     }
     
     .nav-link {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 16px 20px;
-        border-radius: var(--radius-md);
-        min-height: 48px;
-        color: var(--text-primary);
-        font-size: 16px;
-        font-weight: 500;
-        background: transparent;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-        touch-action: manipulation;
-    }
-    
-    .nav-link:hover,
-    .nav-link:active {
-        background: rgba(102, 126, 234, 0.1);
-        color: var(--primary-color);
+        font-size: clamp(13px, 2vw, 16px);
+        padding: 1px 3px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
-        z-index: 10000;
-        position: relative;
+        display: none;
     }
     
     .hero {
@@ -2325,60 +2271,24 @@ body {
         max-width: 720px;
     }
     
-    /* Navigation - Show hamburger menu */
+    /* Navigation - Always visible navbar */
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 280px;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 100px 24px 32px;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-        transition: left 0.3s ease;
-        gap: 8px;
-        z-index: 9999;
-        overflow-y: auto;
+        display: flex;
+        gap: clamp(6px, 1.5vw, 14px);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-    
-    .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        padding: 18px 24px;
-        font-size: 17px;
-        color: var(--text-primary);
-        background: transparent;
-        cursor: pointer;
-        position: relative;
-        z-index: 10001;
-        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-        touch-action: manipulation;
-        user-select: none;
-    }
-    
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link:active {
-        background: rgba(102, 126, 234, 0.1);
-        color: var(--primary-color);
+    .nav-link {
+        font-size: clamp(14px, 1.8vw, 16px);
+        padding: 1px 3px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
-        z-index: 10000;
-        position: relative;
+        display: none;
     }
     
     .nav-actions .btn-primary {
-        display: none;
+        display: inline-flex;
     }
     
     /* Hero Section */
@@ -2507,36 +2417,20 @@ body {
         padding: 0 20px;
     }
     
-    /* Navigation */
+    /* Navigation - Always visible */
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 260px;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 90px 20px 32px;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-        transition: left 0.3s ease;
-        gap: 8px;
-        z-index: 9999;
+        display: flex;
+        gap: clamp(4px, 1vw, 10px);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        padding: 14px 18px;
-        font-size: 15px;
-        color: var(--text-primary);
+    .nav-link {
+        font-size: clamp(13px, 2vw, 15px);
+        padding: 1px 2px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
+        display: none;
         z-index: 10000;
     }
     
@@ -2716,67 +2610,43 @@ body {
         padding: 0 16px;
     }
     
-    /* Navigation */
+    /* Navigation - Always visible */
     .nav-container {
-        padding: 12px 16px;
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
     }
     
     .logo {
-        font-size: 18px;
-        gap: 8px;
+        font-size: 16px;
+        gap: 6px;
     }
     
     .logo svg {
-        width: 30px;
-        height: 30px;
+        width: 26px;
+        height: 26px;
     }
     
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
+        display: flex;
+        gap: 4px;
+        order: 3;
         width: 100%;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 80px 20px 32px;
-        transition: left 0.3s ease;
-        gap: 8px;
-        z-index: 9999;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 6px;
+        border-top: 1px solid var(--bg-tertiary);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-    
-    .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        padding: 18px 24px;
-        font-size: 17px;
-        color: var(--text-primary);
-        background: transparent;
-        cursor: pointer;
-        position: relative;
-        z-index: 10001;
-        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-        touch-action: manipulation;
-        user-select: none;
-    }
-    
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link:active {
-        background: rgba(102, 126, 234, 0.1);
-        color: var(--primary-color);
+    .nav-link {
+        font-size: 13px;
+        padding: 1px 2px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
-        z-index: 10000;
+        display: none;
     }
     
     .nav-actions .btn-primary {
@@ -2784,8 +2654,8 @@ body {
     }
     
     .theme-toggle {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
     }
     
     /* Hero */
@@ -3036,75 +2906,46 @@ body {
    ============================================ */
 @media (min-width: 375px) and (max-width: 479px) {
     .container {
-        padding: 0 16px;
+        padding: 0 12px;
     }
     
-    /* Navigation */
+    /* Navigation - Always visible */
     .nav-container {
-        padding: 10px 16px;
+        padding: 8px 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
     }
     
     .logo {
-        font-size: 16px;
-        gap: 6px;
+        font-size: 14px;
+        gap: 4px;
     }
     
     .logo svg {
-        width: 28px;
-        height: 28px;
+        width: 22px;
+        height: 22px;
     }
     
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
+        display: flex;
+        gap: 3px;
+        order: 3;
         width: 100%;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 70px 16px 24px;
-        transition: left 0.3s ease;
-        gap: 6px;
-        z-index: 9999;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 5px;
+        border-top: 1px solid var(--bg-tertiary);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-    
-    .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        font-size: 16px;
-        padding: 16px 20px;
-        color: var(--text-primary);
-        background: transparent;
-        cursor: pointer;
-        position: relative;
-        z-index: 10001;
-        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-        touch-action: manipulation;
-        user-select: none;
-    }
-    
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link:active {
-        background: rgba(102, 126, 234, 0.1);
-        color: var(--primary-color);
+    .nav-link {
+        font-size: 12px;
+        padding: 1px 2px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
-        z-index: 10000;
-    }
-    
-    .hamburger span {
-        width: 24px;
-        height: 2px;
+        display: none;
     }
     
     .nav-actions .btn-primary {
@@ -3112,13 +2953,13 @@ body {
     }
     
     .theme-toggle {
-        width: 38px;
-        height: 38px;
+        width: 32px;
+        height: 32px;
     }
     
     .theme-toggle svg {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
     }
     
     /* Hero */
@@ -3471,77 +3312,50 @@ body {
    ============================================ */
 @media (max-width: 374px) {
     .container {
-        padding: 0 12px;
+        padding: 0 8px;
     }
     
-    /* Navigation */
+    /* Navigation - Always visible */
     .nav-container {
-        padding: 8px 12px;
+        padding: 6px 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
     }
     
     .logo {
-        font-size: 14px;
-        gap: 4px;
+        font-size: 12px;
+        gap: 3px;
     }
     
     .logo svg {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .logo span {
+        display: none;
     }
     
     .nav-menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
+        display: flex;
+        gap: 2px;
+        order: 3;
         width: 100%;
-        height: 100vh;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 60px 12px 20px;
-        transition: left 0.3s ease;
-        gap: 4px;
-        z-index: 9999;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 4px;
+        border-top: 1px solid var(--bg-tertiary);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-    
-    .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        font-size: 15px;
-        padding: 14px 16px;
-        color: var(--text-primary);
-        background: transparent;
-        cursor: pointer;
-        position: relative;
-        z-index: 10001;
-        -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
-        touch-action: manipulation;
-        user-select: none;
-    }
-    
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link:active {
-        background: rgba(102, 126, 234, 0.1);
-        color: var(--primary-color);
+    .nav-link {
+        font-size: 11px;
+        padding: 1px 1px;
+        border-radius: 2px;
     }
     
     .hamburger {
-        display: flex;
-        gap: 5px;
-        padding: 6px;
-        z-index: 10000;
-    }
-    
-    .hamburger span {
-        width: 22px;
-        height: 2px;
+        display: none;
     }
     
     .nav-actions .btn-primary {
@@ -3549,13 +3363,13 @@ body {
     }
     
     .theme-toggle {
-        width: 34px;
-        height: 34px;
+        width: 28px;
+        height: 28px;
     }
     
     .theme-toggle svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
     }
     
     /* Hero */

@@ -5,132 +5,50 @@
 // DOM Elements
 const navbar = document.getElementById('navbar');
 const themeToggle = document.getElementById('themeToggle');
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
 const pageTransition = document.getElementById('pageTransition');
-
-// Create menu overlay for mobile navigation
-let menuOverlay = null;
-function createMenuOverlay() {
-    if (menuOverlay) return menuOverlay;
-    
-    menuOverlay = document.createElement('div');
-    menuOverlay.className = 'menu-overlay';
-    menuOverlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 9998;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    `;
-    document.body.appendChild(menuOverlay);
-    return menuOverlay;
-}
-
-// ============================================
-// CLOSE MOBILE MENU FUNCTION
-// ============================================
-function closeMobileMenu() {
-    if (hamburger) hamburger.classList.remove('active');
-    if (navMenu) navMenu.classList.remove('active');
-    if (menuOverlay) {
-        menuOverlay.style.opacity = '0';
-        menuOverlay.style.pointerEvents = 'none';
-    }
-    document.body.style.overflow = '';
-}
 
 // ============================================
 // PAGE TRANSITION
 // ============================================
 function initPageTransition() {
-    // Hide transition on page load
-    if (pageTransition) {
-        setTimeout(() => {
-            pageTransition.classList.remove('active');
+    const pt = document.getElementById('pageTransition');
+    if (pt) {
+        // Hide loader after page loads
+        setTimeout(function() {
+            pt.classList.remove('active');
         }, 300);
     }
-}
-
-// Show page transition animation before navigating
-function navigateWithTransition(href) {
-    if (pageTransition) {
-        pageTransition.classList.add('active');
-        setTimeout(() => {
-            window.location.href = href;
-        }, 400); // Wait for animation to complete
-    } else {
-        window.location.href = href;
-    }
-}
-
-// Setup navigation links - Simple and direct approach for mobile
-function setupNavigationLinks() {
-    // Get all nav links in the menu
-    const navLinks = document.querySelectorAll('.nav-menu .nav-link');
     
-    navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        
-        // Skip if no href or anchor link
-        if (!href || href === '#' || href.startsWith('#')) {
-            return;
+    // Show loader before navigating away
+    window.addEventListener('beforeunload', function() {
+        if (pt) {
+            pt.classList.add('active');
         }
-        
-        // Remove any existing click handlers by cloning
-        const newLink = link.cloneNode(true);
-        link.parentNode.replaceChild(newLink, link);
-        
-        // Add fresh click handler
-        newLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            
-            const targetHref = this.getAttribute('href');
-            
-            // Close mobile menu
-            if (hamburger) hamburger.classList.remove('active');
-            if (navMenu) navMenu.classList.remove('active');
-            if (menuOverlay) {
-                menuOverlay.style.opacity = '0';
-                menuOverlay.style.pointerEvents = 'none';
-            }
-            document.body.style.overflow = '';
-            
-            // Navigate with transition
-            if (pageTransition) {
-                pageTransition.classList.add('active');
-                setTimeout(() => {
-                    window.location.href = targetHref;
-                }, 400);
-            } else {
-                window.location.href = targetHref;
-            }
-        }, true); // Use capture phase
     });
     
-    // Also apply to other navigation links (logo, buttons, etc.)
-    const allNavLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="http"]):not([href^="mailto"]):not([href^="tel"]):not(.nav-link)');
-    
-    allNavLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        
-        if (!href || link.hasAttribute('data-transition-handled')) {
-            return;
+    // Also intercept link clicks to show loader
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href]');
+        if (link) {
+            const href = link.getAttribute('href');
+            // Only for internal navigation (not anchors, external links, or javascript)
+            if (href && 
+                !href.startsWith('#') && 
+                !href.startsWith('javascript:') && 
+                !href.startsWith('http://') && 
+                !href.startsWith('https://') &&
+                !href.startsWith('mailto:') &&
+                !href.startsWith('tel:')) {
+                
+                e.preventDefault();
+                if (pt) {
+                    pt.classList.add('active');
+                }
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 400);
+            }
         }
-        
-        link.setAttribute('data-transition-handled', 'true');
-        
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            navigateWithTransition(href);
-        });
     });
 }
 
@@ -166,19 +84,19 @@ let navbarVisible = true;
 let navbarTimeout = null;
 
 function showNavbar() {
-    if (!navbarVisible) {
+    if (!navbarVisible && navbar) {
         navbar.style.transform = 'translateY(0)';
         navbarVisible = true;
     }
     if (navbarTimeout) clearTimeout(navbarTimeout);
-    // Hide again after 3s jika tidak di klik/touch (hanya di desktop)
+    // Hide again after 3s (only on desktop)
     if (window.innerWidth > 768) {
         navbarTimeout = setTimeout(hideNavbar, 3000);
     }
 }
 
 function hideNavbar() {
-    if (navbarVisible) {
+    if (navbarVisible && navbar) {
         navbar.style.transform = 'translateY(-100%)';
         navbarVisible = false;
     }
@@ -192,7 +110,7 @@ window.addEventListener('scroll', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-        // Show navbar saat scroll (hanya di desktop)
+        // Show navbar on scroll (only desktop)
         if (window.innerWidth > 768) {
             showNavbar();
         }
@@ -200,69 +118,12 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Show navbar saat klik/touch
+// Show navbar on interaction
 if (navbar) {
     navbar.addEventListener('mouseenter', showNavbar);
     navbar.addEventListener('touchstart', showNavbar);
     navbar.addEventListener('click', showNavbar);
-    // Hide navbar saat mouse leave
     navbar.addEventListener('mouseleave', hideNavbar);
-}
-
-// ============================================
-// MOBILE MENU TOGGLE
-// ============================================
-function initMobileMenu() {
-    // Create the overlay if not already created
-    createMenuOverlay();
-
-    if (hamburger && navMenu) {
-        // Hamburger click handler
-        hamburger.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const isActive = navMenu.classList.contains('active');
-            
-            if (isActive) {
-                closeMobileMenu();
-            } else {
-                // Open menu
-                hamburger.classList.add('active');
-                navMenu.classList.add('active');
-                if (menuOverlay) {
-                    menuOverlay.style.opacity = '1';
-                    menuOverlay.style.pointerEvents = 'all';
-                }
-                document.body.style.overflow = 'hidden';
-            }
-        });
-        
-        // Close menu when clicking on overlay
-        if (menuOverlay) {
-            menuOverlay.addEventListener('click', function() {
-                closeMobileMenu();
-            });
-        }
-        
-        // Close menu when clicking outside on mobile (but not on nav-links)
-        document.addEventListener('click', function(e) {
-            if (navMenu && navMenu.classList.contains('active')) {
-                // Don't interfere with nav-link clicks at all
-                if (e.target.closest('.nav-link')) {
-                    return; // Let the nav-link handler deal with it
-                }
-                // Don't interfere with hamburger clicks
-                if (e.target.closest('.hamburger')) {
-                    return;
-                }
-                // Close if clicking outside
-                if (!navMenu.contains(e.target)) {
-                    closeMobileMenu();
-                }
-            }
-        });
-    }
 }
 
 // ============================================
@@ -284,15 +145,7 @@ function setupSmoothScroll() {
                 e.preventDefault();
                 
                 // Close mobile menu if open
-                if (hamburger && navMenu) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    if (menuOverlay) {
-                        menuOverlay.style.opacity = '0';
-                        menuOverlay.style.pointerEvents = 'none';
-                    }
-                    document.body.style.overflow = '';
-                }
+                MobileMenu.close();
                 
                 const offsetTop = target.offsetTop - 80;
                 window.scrollTo({
@@ -553,12 +406,19 @@ function updateActiveNavLink() {
 // INITIALIZE EVERYTHING
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme
     initTheme();
+    
+    // Initialize page transition
     initPageTransition();
-    initMobileMenu(); // Initialize mobile menu
-    setupNavigationLinks(); // Setup all navigation links
-    setupSmoothScroll(); // Setup smooth scroll for anchor links
+    
+    // Setup smooth scroll for anchor links
+    setupSmoothScroll();
+    
+    // Create scroll to top button
     createScrollToTop();
+    
+    // Update active nav link on scroll
     updateActiveNavLink();
     
     // Add CSS animations
