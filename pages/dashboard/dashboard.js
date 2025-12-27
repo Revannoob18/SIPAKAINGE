@@ -7,9 +7,9 @@ function drawLineChart(canvas, data, labels) {
     const ctx = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
-    const padding = 40;
-    const chartWidth = width - padding * 2;
-    const chartHeight = height - padding * 2;
+    const padding = { top: 30, right: 30, bottom: 50, left: 50 };
+    const chartWidth = width - padding.left - padding.right;
+    const chartHeight = height - padding.top - padding.bottom;
 
     // Clear canvas
     ctx.clearRect(0, 0, width, height);
@@ -17,46 +17,82 @@ function drawLineChart(canvas, data, labels) {
     // Get theme colors
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const textColor = isDark ? '#E0E0E0' : '#333333';
-    const gridColor = isDark ? '#424242' : '#E0E0E0';
+    const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
     const lineColor = '#667eea';
+    const gradientStart = 'rgba(102, 126, 234, 0.4)';
+    const gradientEnd = 'rgba(102, 126, 234, 0.02)';
 
     // Find max value
-    const maxValue = Math.max(...data, 1);
-    const minValue = Math.min(...data, 0);
+    const maxValue = Math.max(...data, 25);
+    const minValue = 0;
     const valueRange = maxValue - minValue || 1;
 
-    // Draw grid lines
+    // Draw gradient background
+    const bgGradient = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+    bgGradient.addColorStop(0, isDark ? 'rgba(102, 126, 234, 0.05)' : 'rgba(102, 126, 234, 0.03)');
+    bgGradient.addColorStop(1, 'transparent');
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(padding.left, padding.top, chartWidth, chartHeight);
+
+    // Draw grid lines with fade effect
     ctx.strokeStyle = gridColor;
     ctx.lineWidth = 1;
-    for (let i = 0; i <= 4; i++) {
-        const y = padding + (chartHeight / 4) * i;
+    for (let i = 0; i <= 5; i++) {
+        const y = padding.top + (chartHeight / 5) * i;
         ctx.beginPath();
-        ctx.moveTo(padding, y);
-        ctx.lineTo(width - padding, y);
+        ctx.setLineDash([4, 4]);
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(width - padding.right, y);
         ctx.stroke();
+        ctx.setLineDash([]);
     }
 
-    // Draw Y-axis labels
+    // Draw Y-axis labels with background
     ctx.fillStyle = textColor;
-    ctx.font = '12px Poppins';
+    ctx.font = '11px Poppins';
     ctx.textAlign = 'right';
-    for (let i = 0; i <= 4; i++) {
-        const value = maxValue - (valueRange / 4) * i;
-        const y = padding + (chartHeight / 4) * i;
-        ctx.fillText(value.toFixed(0), padding - 10, y + 4);
+    for (let i = 0; i <= 5; i++) {
+        const value = maxValue - (valueRange / 5) * i;
+        const y = padding.top + (chartHeight / 5) * i;
+        ctx.fillText(value.toFixed(0), padding.left - 10, y + 4);
     }
 
-    // Draw line
-    if (data.length > 0) {
+    // Draw area fill under line
+    if (data.length > 0 && data.some(d => d > 0)) {
+        const areaGradient = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+        areaGradient.addColorStop(0, gradientStart);
+        areaGradient.addColorStop(1, gradientEnd);
+        
+        ctx.fillStyle = areaGradient;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, padding.top + chartHeight);
+        
+        data.forEach((value, index) => {
+            const x = padding.left + (chartWidth / (data.length - 1 || 1)) * index;
+            const y = padding.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+            ctx.lineTo(x, y);
+        });
+        
+        ctx.lineTo(padding.left + chartWidth, padding.top + chartHeight);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw smooth curved line
         ctx.strokeStyle = lineColor;
         ctx.lineWidth = 3;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
+        
+        // Add glow effect
+        ctx.shadowColor = lineColor;
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        
         ctx.beginPath();
-
         data.forEach((value, index) => {
-            const x = padding + (chartWidth / (data.length - 1 || 1)) * index;
-            const y = padding + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+            const x = padding.left + (chartWidth / (data.length - 1 || 1)) * index;
+            const y = padding.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
             
             if (index === 0) {
                 ctx.moveTo(x, y);
@@ -65,103 +101,185 @@ function drawLineChart(canvas, data, labels) {
             }
         });
         ctx.stroke();
+        ctx.shadowBlur = 0;
 
-        // Draw points
-        ctx.fillStyle = lineColor;
+        // Draw points with hover-like effect
         data.forEach((value, index) => {
-            const x = padding + (chartWidth / (data.length - 1 || 1)) * index;
-            const y = padding + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+            const x = padding.left + (chartWidth / (data.length - 1 || 1)) * index;
+            const y = padding.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
             
-            ctx.beginPath();
-            ctx.arc(x, y, 5, 0, Math.PI * 2);
-            ctx.fill();
+            // Outer glow
+            if (value > 0) {
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(102, 126, 234, 0.2)';
+                ctx.fill();
+                
+                // Inner circle
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = isDark ? '#1E1E1E' : '#FFFFFF';
+                ctx.fill();
+                ctx.strokeStyle = lineColor;
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+            }
         });
+
+        // Draw value labels on points
+        ctx.fillStyle = textColor;
+        ctx.font = 'bold 10px Poppins';
+        ctx.textAlign = 'center';
+        data.forEach((value, index) => {
+            if (value > 0) {
+                const x = padding.left + (chartWidth / (data.length - 1 || 1)) * index;
+                const y = padding.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+                ctx.fillText(value.toFixed(0), x, y - 16);
+            }
+        });
+    } else {
+        // Empty state message
+        ctx.fillStyle = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.3)';
+        ctx.font = '14px Poppins';
+        ctx.textAlign = 'center';
+        ctx.fillText('Belum ada data untuk periode ini', width / 2, height / 2);
     }
 
     // Draw X-axis labels
     ctx.fillStyle = textColor;
+    ctx.font = '10px Poppins';
     ctx.textAlign = 'center';
+    const step = Math.ceil(labels.length / 7); // Show max 7 labels
     labels.forEach((label, index) => {
-        const x = padding + (chartWidth / (labels.length - 1 || 1)) * index;
-        ctx.fillText(label, x, height - padding + 20);
+        if (index % step === 0 || index === labels.length - 1) {
+            const x = padding.left + (chartWidth / (labels.length - 1 || 1)) * index;
+            ctx.fillText(label, x, height - padding.bottom + 20);
+        }
     });
+
+    // Draw chart title indicator
+    const avgScore = data.filter(d => d > 0).length > 0 
+        ? (data.filter(d => d > 0).reduce((a, b) => a + b, 0) / data.filter(d => d > 0).length).toFixed(1)
+        : '0';
+    ctx.fillStyle = lineColor;
+    ctx.font = 'bold 12px Poppins';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Rata-rata: ${avgScore}`, padding.left, padding.top - 10);
 }
 
 function drawDoughnutChart(canvas, data) {
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 40;
-    const innerRadius = radius * 0.6;
+    const centerY = (canvas.height - 60) / 2;
+    const radius = Math.min(centerX, centerY) - 20;
+    const innerRadius = radius * 0.65;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const colors = ['#667eea', '#f093fb', '#4facfe', '#fa709a', '#fee140', '#30cfd0'];
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const colors = [
+        { main: '#667eea', light: 'rgba(102, 126, 234, 0.2)' },
+        { main: '#f093fb', light: 'rgba(240, 147, 251, 0.2)' },
+        { main: '#4facfe', light: 'rgba(79, 172, 254, 0.2)' },
+        { main: '#fa709a', light: 'rgba(250, 112, 154, 0.2)' },
+        { main: '#fee140', light: 'rgba(254, 225, 64, 0.2)' },
+        { main: '#30cfd0', light: 'rgba(48, 207, 208, 0.2)' }
+    ];
     const total = data.reduce((sum, item) => sum + item.value, 0);
 
     if (total === 0) {
-        // Draw empty state
-        ctx.fillStyle = '#E0E0E0';
+        // Draw empty state with animated dashed circle
+        ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+        ctx.lineWidth = 20;
+        ctx.setLineDash([10, 10]);
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.arc(centerX, centerY, radius - 10, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
         
-        ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' ? '#1E1E1E' : '#FFFFFF';
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' ? '#E0E0E0' : '#333333';
+        ctx.fillStyle = isDark ? '#E0E0E0' : '#666666';
         ctx.font = '14px Poppins';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('Belum Ada Data', centerX, centerY);
+        ctx.fillText('Belum Ada Data Tes', centerX, centerY - 10);
+        ctx.font = '12px Poppins';
+        ctx.fillStyle = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)';
+        ctx.fillText('Ikuti tes untuk melihat distribusi', centerX, centerY + 15);
         return;
     }
 
     let currentAngle = -Math.PI / 2;
+    const gap = 0.02; // Gap between slices
+
+    // Draw shadow for depth effect
+    ctx.shadowColor = 'rgba(0,0,0,0.15)';
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 5;
 
     data.forEach((item, index) => {
-        const sliceAngle = (item.value / total) * Math.PI * 2;
+        const sliceAngle = (item.value / total) * Math.PI * 2 - gap;
         
-        // Draw slice
-        ctx.fillStyle = colors[index % colors.length];
+        // Draw slice with rounded ends effect
+        ctx.fillStyle = colors[index % colors.length].main;
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
-        ctx.arc(centerX, centerY, innerRadius, currentAngle + sliceAngle, currentAngle, true);
+        ctx.arc(centerX, centerY, radius, currentAngle + gap/2, currentAngle + sliceAngle + gap/2);
+        ctx.arc(centerX, centerY, innerRadius, currentAngle + sliceAngle + gap/2, currentAngle + gap/2, true);
         ctx.closePath();
         ctx.fill();
 
-        currentAngle += sliceAngle;
+        currentAngle += sliceAngle + gap;
     });
 
-    // Draw center circle
-    ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' ? '#1E1E1E' : '#FFFFFF';
+    ctx.shadowBlur = 0;
+
+    // Draw inner circle with gradient
+    const innerGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, innerRadius);
+    innerGradient.addColorStop(0, isDark ? '#2A2A2A' : '#FFFFFF');
+    innerGradient.addColorStop(1, isDark ? '#1E1E1E' : '#F8F9FA');
+    ctx.fillStyle = innerGradient;
     ctx.beginPath();
-    ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
+    ctx.arc(centerX, centerY, innerRadius - 2, 0, Math.PI * 2);
     ctx.fill();
 
-    // Draw legend
-    const legendY = canvas.height - 60;
-    let legendX = 20;
+    // Draw center text
+    ctx.fillStyle = isDark ? '#E0E0E0' : '#333333';
+    ctx.font = 'bold 28px Poppins';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(total, centerX, centerY - 8);
+    
+    ctx.font = '11px Poppins';
+    ctx.fillStyle = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)';
+    ctx.fillText('Total Tes', centerX, centerY + 14);
+
+    // Draw legend with improved styling
+    const legendStartY = canvas.height - 50;
+    const itemWidth = canvas.width / Math.min(data.length, 3);
     
     data.forEach((item, index) => {
-        // Color box
-        ctx.fillStyle = colors[index % colors.length];
-        ctx.fillRect(legendX, legendY, 12, 12);
+        const row = Math.floor(index / 3);
+        const col = index % 3;
+        const legendX = (col * itemWidth) + itemWidth / 2 - 40;
+        const legendY = legendStartY + (row * 22);
         
-        // Label
-        ctx.fillStyle = document.documentElement.getAttribute('data-theme') === 'dark' ? '#E0E0E0' : '#333333';
-        ctx.font = '11px Poppins';
+        // Color indicator with rounded corners
+        ctx.fillStyle = colors[index % colors.length].main;
+        ctx.beginPath();
+        ctx.roundRect(legendX, legendY - 5, 14, 14, 3);
+        ctx.fill();
+        
+        // Percentage and label
+        const percentage = ((item.value / total) * 100).toFixed(0);
+        ctx.fillStyle = isDark ? '#E0E0E0' : '#333333';
+        ctx.font = 'bold 11px Poppins';
         ctx.textAlign = 'left';
-        ctx.fillText(`${item.label}: ${item.value}`, legendX + 16, legendY + 10);
+        ctx.fillText(`${item.label}`, legendX + 20, legendY + 5);
         
-        legendX += 100;
-        if (legendX > canvas.width - 100) {
-            legendX = 20;
-            legendY += 20;
-        }
+        ctx.font = '10px Poppins';
+        ctx.fillStyle = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)';
+        ctx.fillText(`${item.value} (${percentage}%)`, legendX + 20, legendY + 18);
     });
 }
 

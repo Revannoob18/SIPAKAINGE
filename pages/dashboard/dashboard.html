@@ -141,12 +141,23 @@
                 <!-- Mental Health Score Chart -->
                 <div class="chart-card">
                     <div class="card-header">
-                        <h3>Skor Kesehatan Mental</h3>
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                            Skor Kesehatan Mental
+                        </h3>
                         <select id="chartPeriod" onchange="updateChart()">
                             <option value="7">7 Hari Terakhir</option>
                             <option value="30">30 Hari Terakhir</option>
                             <option value="90">90 Hari Terakhir</option>
                         </select>
+                    </div>
+                    <div class="chart-info">
+                        <span class="chart-info-item">
+                            <span class="info-dot" style="background: #667eea;"></span>
+                            Skor lebih rendah = lebih baik
+                        </span>
                     </div>
                     <div class="chart-container">
                         <canvas id="mentalHealthChart"></canvas>
@@ -156,7 +167,19 @@
                 <!-- Test Distribution -->
                 <div class="chart-card">
                     <div class="card-header">
-                        <h3>Distribusi Tes</h3>
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                                <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+                            </svg>
+                            Distribusi Tes
+                        </h3>
+                    </div>
+                    <div class="chart-info">
+                        <span class="chart-info-item">
+                            <span class="info-dot" style="background: #f093fb;"></span>
+                            Semua jenis tes yang telah diikuti
+                        </span>
                     </div>
                     <div class="chart-container">
                         <canvas id="testDistributionChart"></canvas>
@@ -166,7 +189,15 @@
                 <!-- Mood Tracker -->
                 <div class="chart-card mood-tracker-card">
                     <div class="card-header">
-                        <h3>Mood Tracker Mingguan</h3>
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                            Mood Tracker Mingguan
+                        </h3>
                     </div>
                     <div class="mood-calendar">
                         <div class="mood-days" id="moodDays">
