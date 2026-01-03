@@ -511,3 +511,63 @@
         font-size: 12px;
     }
 }
+
+/* Source Notes for Research Articles */
+.source-note {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-left: 4px solid var(--primary-color);
+    padding: 16px 20px;
+    margin-top: 32px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.source-note strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Table styling for articles */
+.article-full-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.article-full-content th,
+.article-full-content td {
+    padding: 12px;
+    border: 1px solid var(--bg-tertiary);
+    text-align: left;
+}
+
+.article-full-content th {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 600;
+}
+
+.article-full-content tr:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+.article-full-content tr:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .source-note {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+}
+
+[data-theme="dark"] .article-full-content tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .article-full-content tr:hover {
+    background: rgba(102, 126, 234, 0.15);
+}
