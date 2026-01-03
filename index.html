@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPAKAINGE SMANSA - Ruang Curhat & Bimbingan Konseling Siswa</title>
+    <meta name="description" content="Ruang BK SMAN 1 Bone - tempat aman buat curhat, konseling, dan dukungan kesehatan mental siswa. Privasi terjamin, tanpa judgement.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition active" id="pageTransition"><div class="loader"></div></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M20 12 C20 12, 15 15, 15 20 C15 25, 20 28, 20 28" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M20 12 C20 12, 25 15, 25 20 C25 25, 20 28, 20 28" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>SIPAKAINGE</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Beranda</a></li>
+                <li><a href="pages/layanan/layanan.html" class="nav-link">Layanan</a></li>
+                <li><a href="pages/tes-mental/tes-mental.html" class="nav-link">Tes Mental</a></li>
+                <li><a href="pages/artikel/artikel.html" class="nav-link">Artikel</a></li>
+                <li><a href="pages/dashboard/dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/> 
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="btn-primary" onclick="window.location.href='#konsultasi'">Mau Curhat?</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Animated Background Elements -->
+        <div class="hero-bg-elements">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-particles">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <span class="hero-badge">🧠 SIPAKAINGE SMANSA</span>
+                <h1 class="hero-title">Ruang BK <span class="gradient-text">SMAN 1 BONE</span></h1>
+                <p class="hero-description">Tempat aman buat kamu curhat dan dapat dukungan. Ada masalah akademik, pergaulan, atau lagi nggak baik-baik aja? Tenang, ceritamu aman di sini. Privasi terjamin 100%!</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-large" onclick="window.location.href='pages/tes-mental/tes-mental.html'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        Mulai Tes Mental Health
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="window.location.href='#about'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                        Pelajari Lebih Lanjut
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>Siswa Terbantu</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Privasi Terjamin</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Gratis</h3>
+                        <p>Untuk Siswa SMANSA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div class="floating-card card-1">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="25" fill="#E3F2FD"/>
+                        <path d="M30 20 L35 30 L30 35 L25 30 Z" fill="#2196F3"/>
+                    </svg>
+                    <span>Tes Mental</span>
+                </div>
+                <div class="floating-card card-2">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="25" fill="#F3E5F5"/>
+                        <path d="M30 15 C30 15, 20 25, 20 35 C20 40, 25 45, 30 45 C35 45, 40 40, 40 35 C40 25, 30 15, 30 15" fill="#9C27B0"/>
+                    </svg>
+                    <span>Konseling</span>
+                </div>
+                <div class="floating-card card-3">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="25" fill="#E8F5E9"/>
+                        <circle cx="30" cy="30" r="15" fill="#4CAF50"/>
+                        <circle cx="30" cy="30" r="8" fill="#E8F5E9"/>
+                    </svg>
+                    <span>Meditasi</span>
+                </div>
+                <div class="hero-illustration">
+                    <svg width="500" height="500" viewBox="0 0 500 500">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="250" cy="250" r="200" fill="url(#grad1)" opacity="0.1"/>
+                        <circle cx="250" cy="200" r="80" fill="#667eea" opacity="0.3"/>
+                        <ellipse cx="230" cy="190" rx="15" ry="20" fill="#FFF"/>
+                        <ellipse cx="270" cy="190" rx="15" ry="20" fill="#FFF"/>
+                        <circle cx="230" cy="195" r="8" fill="#333"/>
+                        <circle cx="270" cy="195" r="8" fill="#333"/>
+                        <path d="M220 230 Q250 250 280 230" stroke="#333" stroke-width="3" fill="none"/>
+                        <path d="M150 280 Q250 200 350 280" stroke="#764ba2" stroke-width="4" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+        
+        <!-- Section Transition Gradient -->
+        <div class="section-transition"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header slide-up">
+                <span class="section-badge">Tentang Kami</span>
+                <h2 class="section-title">Ruang BK <span class="gradient-text">SMAN 1 Bone</span></h2>
+                <p class="section-description">Kami tim guru BK yang siap dengerin kamu. Mau curhat soal pelajaran, teman, keluarga, atau apapun? Di sini tempatnya. Nggak perlu takut dihakimi, semua ceritamu dijaga rahasianya!</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image slide-up">
+                    <div class="image-wrapper">
+                        <svg width="400" height="400" viewBox="0 0 400 400">
+                            <rect x="50" y="50" width="300" height="300" rx="20" fill="#E3F2FD"/>
+                            <circle cx="200" cy="150" r="50" fill="#2196F3"/>
+                            <rect x="120" y="220" width="160" height="20" rx="10" fill="#64B5F6"/>
+                            <rect x="100" y="260" width="200" height="15" rx="7" fill="#90CAF9"/>
+                            <rect x="130" y="295" width="140" height="15" rx="7" fill="#BBDEFB"/>
+                        </svg>
+                    </div>
+                    <div class="about-badge">
+                        <svg width="80" height="80" viewBox="0 0 80 80">
+                            <circle cx="40" cy="40" r="35" fill="#4CAF50"/>
+                            <path d="M25 40 L35 50 L55 30" stroke="white" stroke-width="4" fill="none"/>
+                        </svg>
+                        <span>Tersertifikasi</span>
+                    </div>
+                </div>
+                <div class="about-details slide-up">
+                    <div class="about-grid">
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <path d="M20 5 L25 15 L35 15 L27 22 L30 32 L20 25 L10 32 L13 22 L5 15 L15 15 Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Visi Kami</h3>
+                            <p>Jadi tempat yang nyaman dan aman buat semua siswa SMAN 1 Bone untuk berbagi cerita dan dapat dukungan. Kesehatan mental siswa adalah prioritas kami!</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 10 L20 20 L28 20" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <h3>Misi Kami</h3>
+                            <p>Memberikan layanan BK yang bisa diakses semua siswa dengan mudah. Kami di sini bukan buat menghakimi, tapi buat dengerin dan bantuin kamu.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <rect x="8" y="12" width="24" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M8 18 L32 18" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="20" cy="10" r="4" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Tim Kami</h3>
+                            <p>Guru BK kami sudah terlatih dan berpengalaman menangani berbagai masalah siswa. Kami terus belajar supaya bisa bantu kamu dengan lebih baik.</p>
+                        </div>
+                        <div class="about-card">
+                            <div class="card-icon">
+                                <svg width="40" height="40" viewBox="0 0 40 40">
+                                    <path d="M20 8 C20 8, 10 12, 10 20 C10 28, 20 35, 20 35 C20 35, 30 28, 30 20 C30 12, 20 8, 20 8" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3>Janji Kami</h3>
+                            <p>Ceritamu aman sama kami! Privasi dijaga ketat. Kami nggak akan cerita ke siapapun tanpa izinmu (kecuali kalau ada bahaya serius).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section Transition Gradient -->
+        <div class="section-transition section-transition-about"></div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview" id="services">
+        <div class="container">
+            <div class="section-header slide-up">
+                <span class="section-badge">Layanan Kami</span>
+                <h2 class="section-title">Apa Aja Yang <span class="gradient-text">Bisa Kami Bantu?</span></h2>
+                <p class="section-description">Berbagai layanan BK gratis buat siswa SMAN 1 Bone. Pilih yang kamu butuhkan!</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#E3F2FD"/>
+                            <path d="M25 15 C25 15, 18 20, 18 28 C18 33, 22 37, 25 37 C28 37, 32 33, 32 28 C32 20, 25 15, 25 15" fill="#2196F3"/>
+                        </svg>
+                    </div>
+                    <h3>Curhat Pribadi</h3>
+                    <p>Sesi privat sama guru BK. Ceritain apa aja yang lagi kamu rasain, dijamin rahasia!</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.9/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/layanan/layanan.html'">Detail Layanan</button>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#F3E5F5"/>
+                            <circle cx="20" cy="22" r="6" fill="#9C27B0"/>
+                            <circle cx="30" cy="22" r="6" fill="#9C27B0"/>
+                            <path d="M15 32 Q25 38 35 32" stroke="#9C27B0" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Bingung Mau Kemana?</h3>
+                    <p>Bantuan pilih jurusan kuliah dan rencana masa depan. Kita explore bareng!</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.8/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/layanan/layanan.html'">Detail Layanan</button>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#E8F5E9"/>
+                            <path d="M18 28 C18 28, 22 25, 25 25 C28 25, 32 28, 32 28" stroke="#4CAF50" stroke-width="2" fill="none"/>
+                            <circle cx="20" cy="20" r="2" fill="#4CAF50"/>
+                            <circle cx="30" cy="20" r="2" fill="#4CAF50"/>
+                        </svg>
+                    </div>
+                    <h3>Butuh Temen Cerita?</h3>
+                    <p>Tempat curhat yang aman buat siswa SMANSA. Apapun masalahmu, kami siap dengerin.</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.9/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/layanan/layanan.html'">Detail Layanan</button>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#FFF3E0"/>
+                            <circle cx="25" cy="25" r="12" fill="#FF9800"/>
+                            <circle cx="25" cy="25" r="6" fill="#FFF3E0"/>
+                        </svg>
+                    </div>
+                    <h3>Meditasi & Mindfulness</h3>
+                    <p>Program meditasi terpandu untuk ketenangan pikiran dan kesehatan mental.</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.7/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/relaksasi/relaksasi.html'">Detail Layanan</button>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#FCE4EC"/>
+                            <path d="M18 25 C18 25, 20 20, 25 20 C30 20, 32 25, 32 25 C32 30, 28 33, 25 33 C22 33, 18 30, 18 25" fill="#E91E63"/>
+                        </svg>
+                    </div>
+                    <h3>Masalah Pergaulan</h3>
+                    <p>Susah bergaul atau ada masalah sama teman? Kita bahas bareng cara mengatasinya.</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.8/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/layanan/layanan.html'">Detail Layanan</button>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20" fill="#E1F5FE"/>
+                            <rect x="18" y="20" width="14" height="15" rx="2" fill="#03A9F4"/>
+                            <circle cx="25" cy="18" r="3" fill="#03A9F4"/>
+                        </svg>
+                    </div>
+                    <h3>Masalah Remaja</h3>
+                    <p>Tekanan sekolah, drama pertemanan, atau lagi cari jati diri? Kita ngobrol yuk!</p>
+                    <div class="service-rating">
+                        ⭐⭐⭐⭐⭐ <span>(4.9/5)</span>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='pages/layanan/layanan.html'">Detail Layanan</button>
+                </div>
+            </div>
+            <div class="section-footer">
+                <button class="btn-primary btn-large" onclick="window.location.href='pages/layanan/layanan.html'">
+                    Lihat Semua Layanan
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="konsultasi">
+        <div class="container">
+            <div class="cta-content slide-up">
+                <h2>Butuh Bantuan atau Mau Cerita?</h2>
+                <p>Nggak usah ragu buat dateng ke ruang BK. Kami di sini buat dengerin, bukan menghakimi. Semua ceritamu dijaga rahasianya. Yuk, mulai langkah pertama!</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary btn-large" onclick="window.location.href='pages/tes-mental/tes-mental.html'">
+                        Cek Kondisi Mentalku
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="window.open('https://wa.me/6281234567890?text=Halo Pak/Bu, saya siswa SMANSA mau curhat', '_blank')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Chat Guru BK via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg width="36" height="36" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 12 C20 12, 15 15, 15 20 C15 25, 20 28, 20 28" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 12 C20 12, 25 15, 25 20 C25 25, 20 28, 20 28" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>SIPAKAINGE</span>
+                    </div>
+                    <p class="footer-tagline">Ruang BK SMAN 1 Bone - tempat aman buat siswa curhat dan dapat dukungan. Privasi terjamin!</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="pages/artikel/artikel.html">Artikel</a></li>
+                        <li><a href="pages/dashboard/dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Layanan -->
+                <div class="footer-column footer-services">
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="pages/tes-mental/tes-mental.html">Tes Mental Health</a></li>
+                        <li><a href="pages/layanan/layanan.html">Konseling Individu</a></li>
+                        <li><a href="pages/layanan/layanan.html">Konseling Sosial</a></li>
+                        <li><a href="pages/layanan/layanan.html">Konseling Remaja</a></li>
+                        <li><a href="pages/layanan/layanan.html">Bimbingan Karier</a></li>
+                        <li><a href="pages/layanan/layanan.html">BK Sahabat Murid</a></li>
+                        <li><a href="pages/layanan/layanan.html">Konseling Kelompok</a></li>
+                        <li><a href="pages/layanan/layanan.html">Konseling Keluarga</a></li>
+                        <li><a href="pages/relaksasi/relaksasi.html">Meditasi & Mindfulness</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>Jl. Ternate No. 1, Bone, Sulsel</span>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span>bk@sman1bone.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SIPAKAINGE SMANSA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281234567890?text=Halo Pak/Bu, saya siswa SMANSA mau curhat" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>SIPAKAINGE Assistant</h3>
+            <button class="chatbot-close" id="chatbotClose">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="bot-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>Hai! Aku asisten virtual BK SMANSA. Ada yang bisa aku bantu? Mau curhat atau tanya-tanya?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Ketik pesanmu...">
+            <button id="chatbotSend">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Chat">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

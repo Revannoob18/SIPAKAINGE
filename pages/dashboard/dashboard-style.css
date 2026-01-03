@@ -1,0 +1,1076 @@
+/* ============================================
+   DASHBOARD PAGE STYLES
+   ============================================ */
+
+.dashboard-header {
+    padding: 160px 0 60px;
+    background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(118, 75, 162, 0.2) 0%, transparent 60%);
+}
+
+.dashboard-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.dashboard-header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.dashboard-header p {
+    font-size: 19px;
+    color: var(--text-secondary);
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Stats Section */
+.stats-section {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 28px;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 32px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    transform: scaleY(0);
+    transition: transform var(--transition-normal);
+}
+
+.stat-card:hover::before {
+    transform: scaleY(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.stat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Charts Section */
+.charts-section {
+    padding: 60px 0;
+    background: var(--bg-secondary);
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+    gap: 32px;
+}
+
+.chart-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--bg-tertiary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chart-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
+    border-color: var(--primary-color);
+}
+
+.chart-card:hover::before {
+    opacity: 1;
+}
+
+.chart-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.chart-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-card h3::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.chart-card select {
+    padding: 10px 16px;
+    border: 2px solid var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.chart-card select:hover {
+    border-color: var(--primary-color);
+    background-color: var(--bg-primary);
+}
+
+.chart-card select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.chart-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+.chart-info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.info-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.02) 100%);
+    border-radius: var(--radius-md);
+    padding: 10px;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+    width: 100% !important;
+}
+
+/* Mood Tracker Card */
+.mood-tracker-card {
+    grid-column: span 2;
+}
+
+.mood-calendar {
+    margin-bottom: 32px;
+}
+
+.mood-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+
+.mood-day {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 2px solid var(--bg-tertiary);
+    transition: all var(--transition-fast);
+}
+
+.mood-day.has-mood {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.mood-day-name {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.mood-day-emoji {
+    font-size: 32px;
+}
+
+.mood-day-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.mood-selector {
+    background: var(--bg-secondary);
+    padding: 24px;
+    border-radius: var(--radius-md);
+}
+
+.mood-selector h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.mood-options {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.mood-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    background: var(--bg-primary);
+    border: 2px solid var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mood-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+}
+
+.mood-btn.selected {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.mood-btn.selected .mood-label {
+    color: white;
+}
+
+.mood-emoji {
+    font-size: 40px;
+}
+
+.mood-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Results Section */
+.results-section {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.results-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.results-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    gap: 24px;
+}
+
+.result-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+    animation: fadeInUp 0.4s ease;
+}
+
+.result-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.result-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.result-date {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.result-score-badge {
+    padding: 8px 20px;
+    border-radius: var(--radius-xl);
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.result-body {
+    margin-top: 16px;
+}
+
+.result-category {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.result-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.result-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-state svg {
+    margin-bottom: 24px;
+    opacity: 0.6;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* Recommendations Section */
+.recommendations-section {
+    padding: 60px 0;
+    background: var(--bg-secondary);
+}
+
+.recommendations-section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 24px;
+}
+
+.recommendation-card {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.recommendation-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.recommendation-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.recommendation-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mood-tracker-card {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        padding: 120px 0 40px;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+    
+    .dashboard-header p {
+        font-size: 15px;
+    }
+    
+    .dashboard-header .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-actions {
+        width: 100%;
+    }
+    
+    .header-actions .btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .stats-section {
+        padding: 40px 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+    }
+    
+    .stat-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+    
+    .charts-section {
+        padding: 40px 0;
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .chart-card {
+        padding: 20px;
+    }
+    
+    .chart-card h3 {
+        font-size: 16px;
+    }
+    
+    .chart-card select {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .chart-container {
+        height: 250px;
+    }
+    
+    .mood-tracker-card {
+        grid-column: span 1;
+    }
+    
+    .results-section {
+        padding: 40px 0;
+    }
+    
+    .results-section h2 {
+        font-size: 24px;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .result-item {
+        padding: 16px;
+    }
+    
+    .mood-days {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+    
+    .mood-day {
+        padding: 8px 4px;
+    }
+    
+    .mood-day-emoji {
+        font-size: 20px;
+    }
+    
+    .mood-day-name {
+        font-size: 10px;
+    }
+    
+    .mood-day-date {
+        font-size: 9px;
+    }
+    
+    .mood-selector {
+        padding: 16px;
+    }
+    
+    .mood-selector h4 {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .mood-options {
+        gap: 8px;
+    }
+    
+    .mood-btn {
+        padding: 10px 8px;
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .mood-emoji {
+        font-size: 28px;
+    }
+    
+    .mood-label {
+        font-size: 10px;
+    }
+    
+    .recommendations-section {
+        padding: 40px 0;
+    }
+    
+    .recommendations-section h2 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .recommendation-card {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header {
+        padding: 100px 0 30px;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 22px;
+    }
+    
+    .dashboard-header p {
+        font-size: 13px;
+    }
+    
+    .stats-section {
+        padding: 30px 0;
+    }
+    
+    .stats-grid {
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 14px;
+        gap: 14px;
+    }
+    
+    .stat-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .stat-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .stat-value {
+        font-size: 22px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+    
+    .charts-section {
+        padding: 30px 0;
+    }
+    
+    .charts-grid {
+        gap: 16px;
+    }
+    
+    .chart-card {
+        padding: 14px;
+    }
+    
+    .chart-card .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    
+    .chart-card h3 {
+        font-size: 14px;
+    }
+    
+    .chart-card select {
+        width: 100%;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+    
+    .mood-calendar {
+        margin-bottom: 20px;
+    }
+    
+    .mood-days {
+        gap: 3px;
+    }
+    
+    .mood-day {
+        padding: 6px 2px;
+    }
+    
+    .mood-day-emoji {
+        font-size: 16px;
+    }
+    
+    .mood-day-name {
+        font-size: 8px;
+        margin-bottom: 4px;
+    }
+    
+    .mood-day-date {
+        font-size: 7px;
+    }
+    
+    .mood-selector {
+        padding: 12px;
+    }
+    
+    .mood-selector h4 {
+        font-size: 12px;
+    }
+    
+    .mood-options {
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+    
+    .mood-btn {
+        padding: 8px 4px;
+        gap: 4px;
+    }
+    
+    .mood-emoji {
+        font-size: 22px;
+    }
+    
+    .mood-label {
+        font-size: 8px;
+        display: none;
+    }
+    
+    .results-section {
+        padding: 30px 0;
+    }
+    
+    .results-section .section-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .results-section h2 {
+        font-size: 20px;
+    }
+    
+    .results-grid {
+        gap: 12px;
+    }
+    
+    .result-item {
+        padding: 14px;
+    }
+    
+    .result-title {
+        font-size: 15px;
+    }
+    
+    .result-score-badge {
+        font-size: 18px;
+        padding: 6px 14px;
+    }
+    
+    .recommendations-section {
+        padding: 30px 0;
+    }
+    
+    .recommendations-section h2 {
+        font-size: 20px;
+    }
+    
+    .recommendations-grid {
+        gap: 12px;
+    }
+    
+    .recommendation-card {
+        padding: 14px;
+    }
+    
+    .recommendation-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 26px;
+    }
+    
+    .recommendation-card h3 {
+        font-size: 15px;
+    }
+    
+    .recommendation-card p {
+        font-size: 13px;
+    }
+    
+    .empty-state {
+        padding: 50px 16px;
+    }
+    
+    .empty-state svg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .empty-state h3 {
+        font-size: 18px;
+    }
+    
+    .empty-state p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .dashboard-header {
+        padding: 90px 0 20px;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 18px;
+    }
+    
+    .dashboard-header p {
+        font-size: 12px;
+    }
+    
+    .stats-section {
+        padding: 24px 0;
+    }
+    
+    .stats-grid {
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .stat-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    .stat-label {
+        font-size: 11px;
+    }
+    
+    .charts-section {
+        padding: 24px 0;
+    }
+    
+    .chart-card {
+        padding: 12px;
+    }
+    
+    .chart-card h3 {
+        font-size: 13px;
+    }
+    
+    .chart-container {
+        height: 180px;
+    }
+    
+    .mood-tracker-card {
+        padding: 12px;
+    }
+    
+    .mood-days {
+        gap: 2px;
+    }
+    
+    .mood-day {
+        padding: 4px 1px;
+    }
+    
+    .mood-day-emoji {
+        font-size: 14px;
+    }
+    
+    .mood-day-name {
+        font-size: 7px;
+    }
+    
+    .mood-day-date {
+        display: none;
+    }
+    
+    .mood-selector {
+        padding: 10px;
+    }
+    
+    .mood-selector h4 {
+        font-size: 11px;
+    }
+    
+    .mood-options {
+        gap: 3px;
+    }
+    
+    .mood-btn {
+        padding: 6px 3px;
+    }
+    
+    .mood-emoji {
+        font-size: 18px;
+    }
+    
+    .results-section {
+        padding: 24px 0;
+    }
+    
+    .results-section h2 {
+        font-size: 18px;
+    }
+    
+    .result-item {
+        padding: 12px;
+    }
+    
+    .result-title {
+        font-size: 14px;
+    }
+    
+    .result-score-badge {
+        font-size: 16px;
+        padding: 4px 10px;
+    }
+    
+    .recommendations-section {
+        padding: 24px 0;
+    }
+    
+    .recommendations-section h2 {
+        font-size: 18px;
+    }
+    
+    .recommendation-card {
+        padding: 12px;
+    }
+    
+    .recommendation-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+    
+    .recommendation-card h3 {
+        font-size: 14px;
+    }
+    
+    .recommendation-card p {
+        font-size: 12px;
+    }
+}
