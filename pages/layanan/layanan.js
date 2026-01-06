@@ -203,7 +203,7 @@ function openServiceDetail(serviceId) {
                     <button class="btn-primary btn-large" onclick="showBookingForm('${serviceId}')">
                         Atur Jadwal
                     </button>
-                    <button class="btn-secondary btn-large" onclick="window.open('https://wa.me/6281234567890?text=Halo Pak/Bu, saya siswa SMANSA mau tanya tentang ${service.title}', '_blank')">
+                    <button class="btn-secondary btn-large" onclick="window.open('https://wa.me/6285335559568?text=Halo Pak/Bu, saya siswa SMANSA mau tanya tentang ${service.title}', '_blank')">
                         Chat Guru BK
                     </button>
                 </div>
@@ -398,7 +398,7 @@ function showBookingForm(serviceId) {
         MindCare.showNotification('Fitur booking akan segera tersedia! Sementara hubungi kami via WhatsApp.', 'success');
     }
     setTimeout(() => {
-        window.open('https://wa.me/6281234567890?text=Halo Pak/Bu, saya siswa SMANSA mau atur jadwal layanan BK', '_blank');
+        window.open('https://wa.me/6285335559568?text=Halo Pak/Bu, saya siswa SMANSA mau atur jadwal layanan BK', '_blank');
     }, 1500);
 }
 

@@ -411,7 +411,7 @@ function loadRecommendations() {
             title: 'Chat Guru BK',
             description: 'Hasil tesmu menunjukkan kamu butuh bantuan lebih. Yuk, cerita ke guru BK. Privasi kamu dijamin!',
             action: 'Chat Sekarang',
-            link: 'https://wa.me/6281234567890'
+            link: 'https://wa.me/6285335559568'
         });
     }
 
